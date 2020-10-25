@@ -23,15 +23,16 @@ var navBtn = $("#nav ul li");
 var cont =$("#contents > div");
 
 // navBtn.click(function(){}) -> 무언가를 클릭했을때, 어떤 동작이 일어나게 하려면.
-navBtn.click(function(e){
-    e.preventDefault();
-    var target = $(this);
-    var index = target.index();
-    //alert(index);
-    var section = cont.eq(index);
-    var offset = section.offset().top;
-    //alert(offset); -> 각 section의 offset Top값.
-    $(`html, body`).animate({ scrollTop : offset }, 600, "easeInSine");
+    navBtn.click(function(e){
+        e.preventDefault();
+        var target = $(this);
+        var index = target.index();
+        //alert(index);
+        var section = cont.eq(index);
+        var offset = section.offset().top;
+        //alert(offset); -> 각 section의 offset Top값.
+        $(`html, body`).animate({ scrollTop : offset }, 600, "easeInSine");
+    });
 
     $(window).scroll(function(){                // (브라우저를 window라고 표현.) 브라우저에 scroll(.scroll = 이벤트)이 됐을때 함수를 설정.
         var wScroll = $(this).scrollTop()       /* 현재 이 브라우저의 scrollTop값을 알아낸다. -> 왜냐면 스크롤 값하고 오프셋 값을 비교해야, 내가 현재 몇번째 박스에 있는지 알아야 하기 때문.
@@ -67,7 +68,7 @@ navBtn.click(function(e){
             navBtn.eq(5).addClass(`active`);
         }
     });
-});
+
 
 
 /*
