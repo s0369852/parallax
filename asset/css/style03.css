@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+/* reset */
+* {margin: 0; padding: 0; font-family: 'Lato';}
+li {list-style: none;}
+a {text-decoration: none;}
+
+
+/* nav */
+#nav {position: fixed; top: 0; left: 0; width:  100%; background-color: rgba(255, 255, 255, 0.3);}
+#nav h1 {float: left; padding: 5px 5px 5px 15px; font-family: 'Abel'; font-size: 40px; color: #fff;}
+#nav ul {float: right; padding-right: 10px;}
+#nav ul li {display: inline;}
+#nav ul li a {display: inline-block; padding: 20px 15px; font-family: 'Abel'; font-weight: bold; color: #fff; text-transform: capitalize;}
+/* css로 미리 .active class를 설정해 놓는다. (active를 붙여주면 color 변경) */
+#nav ul li.active a {color: #030303;}
+#nav .mNav {display: none; position: absolute; top: 7px; right: 10px; width: 65px; height: 45px; cursor: pointer; /* background-color: rgba(255,255,255,.3); */}
+
+/* icon-menu */
+.icon-wrap {padding-left: 10px;}
+.icon-wrap .icon, 
+.icon-wrap .icon::before,
+.icon-wrap .icon::after {width: 45px; height: 4px; background-color: #ffffff;}
+.icon-wrap .icon {position: relative; margin-top: 20px;}
+.icon-wrap .icon::before {content: ''; position: absolute; left: 0; bottom: 10px;}
+.icon-wrap .icon::after {content: ''; position: absolute; left: 0; top: 10px;}
+
+/* contents */
+#contents {text-align: center; color: #fff; text-shadow: 1px 3px 8px rgba(0,0,0,.3);}
+#contents > div {height: 100vh; line-height: 100vh;}
+#contents > div h2 {font-size: 90px; font-weight: 100; text-transform: uppercase;}
+#contents > div h2 strong {font-weight: 700; font-style: italic;}
+
+/* section */
+#section1 {background: radial-gradient(ellipse farthest-corner at center top, #ffcdd2 0%, #ef5350 100%);}
+#section2 {background: radial-gradient(ellipse farthest-corner at center top, #d1c4e9, #7e57c2);}
+#section3 {background: radial-gradient(ellipse farthest-corner at center top, #c5cae9, #5c6bc0);}
+#section4 {background: radial-gradient(ellipse farthest-corner at center bottom, #b2dfdb , #26a69a);}
+#section5 {background: radial-gradient(ellipse farthest-corner at center bottom, #ffe0b2 0%, #ffa726 100%);}
+#section6 {background: radial-gradient(ellipse farthest-corner at center top, #b2ebf2 0%, #00bcd4 100%);}
+
+/* mediq query */
+@media (max-width: 800px) {
+    #nav .menu {display: none;}
+    #nav .mNav {display: block;}
+
+    #nav h1 {width: 100%;}
+    #nav .menu {float: none; text-align: center; padding-right: 0;}
+    #nav .menu li {display: inline-block; width: 100%;}
+    #nav .menu li.active {background-color: rgba(255,255,255,.3);}
+
+    #contents > div h2 {font-size: 6vw; font-weight: 300;}
+}
