@@ -1,0 +1,129 @@
+@charset "UTF-8";
+
+/* reset */
+* {margin: 0; padding: 0; font-family: 'Lato'; box-sizing: border-box;}
+li {list-style: none;}
+a {text-decoration: none;}
+
+
+/* nav */
+#nav { position: fixed; z-index: 1000; top: 0; left: 0; width:  100%; height: 61px; background-color: rgba(255, 255, 255, 0.3); transition: all 0.3s ease ; -webkit-transition: all 0.3s ease ; -moz-transition: all 0.3s ease ; -ms-transition: all 0.3s ease ; -o-transition: all 0.3s ease ; }
+#nav.on {position: fixed; top: -61px;}
+#nav h1 {float: left; padding: 5px 5px 5px 15px; font-family: 'Abel'; font-size: 40px; color: #fff;}
+
+/* dot */
+#dot {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform:translateY(-50%) ;
+    -webkit-transform:translateY(-50%) ;
+    -moz-transform:translateY(-50%) ;
+    -ms-transform:translateY(-50%) ;
+    -o-transform:translateY(-50%) ;
+}
+
+/* border를 준 것처럼 들어갔다. 이 부분은 움직여야해서 border를 쓸 수 없어서 box-shadow를 준것. */
+#dot li {
+    position: relative;
+    margin: 15px 12px;
+    width: 20px;
+    height: 20px;
+    box-shadow: 0 0 0 2px rgba(255,255,255, 0);
+    border-radius:50% ;
+    -webkit-border-radius:50% ;
+    -moz-border-radius:50% ;
+    -ms-border-radius:50% ;
+    -o-border-radius:50% ;
+    transition: box-shadow 0.3s ease;
+    -webkit-transition: box-shadow 0.3s ease;
+    -moz-transition: box-shadow 0.3s ease;
+    -ms-transition: box-shadow 0.3s ease;
+    -o-transition: box-shadow 0.3s ease;
+}
+
+#dot li.active {box-shadow: 0 0 0 2px rgba(255,255,255,1);}
+
+#dot li a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    color:  #fff;
+    background-color: rgba(255,255,255,.3);
+    text-decoration: none;
+    border: 2px solid #fff;
+    border-radius:50% ;
+    -webkit-border-radius:50% ;
+    -moz-border-radius:50% ;
+    -ms-border-radius:50% ;
+    -o-border-radius:50% ;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    -webkit-transition: background-color 0.3s ease, transform 0.3s ease;
+    -moz-transition: background-color 0.3s ease, transform 0.3s ease;
+    -ms-transition: background-color 0.3s ease, transform 0.3s ease;
+    -o-transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* 퍼지는 효과 */
+#dot li a::after {
+    content: '';
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    box-shadow: 0 0 0 1px #fff;
+    /*스케일을3배로키운다.*/transform: scale(3);
+    -webkit-transform: scale(3);
+    -moz-transform: scale(3);
+    -ms-transform: scale(3);
+    -o-transform: scale(3);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s 0.3s;
+    -webkit-transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s 0.3s;
+    -moz-transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s 0.3s;
+    -ms-transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s 0.3s;
+    -o-transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s 0.3s;
+}
+
+#dot li.active a:after {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    -webkit-transition: opacity 0.3s ease, transform 0.3s ease;
+    -moz-transition: opacity 0.3s ease, transform 0.3s ease;
+    -ms-transition: opacity 0.3s ease, transform 0.3s ease;
+    -o-transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#dot li a em {display: none;}
+
+
+/* contents */
+#contents {text-align: center; color: #fff; text-shadow: 1px 3px 8px rgba(0,0,0,.3);}
+#contents > div {height: 100vh; line-height: 100vh;}
+#contents > div h2 {font-size: 4vw; font-weight: 100; text-transform: uppercase;}
+#contents > div h2 strong {font-weight: 700; font-style: italic;}
+
+/* section */
+#section1 {background: radial-gradient(ellipse farthest-corner at center top, #ffcdd2 0%, #b71c1c 100%);}
+#section2 {background: radial-gradient(ellipse farthest-corner at center top, #d1c4e9, #4a148c);}
+#section3 {background: radial-gradient(ellipse farthest-corner at center top, #c5cae9, #283593);}
+#section4 {background: radial-gradient(ellipse farthest-corner at center bottom, #b2dfdb , #006064);}
+#section5 {background: radial-gradient(ellipse farthest-corner at center bottom, #ffe0b2 0%, #ff6f00 100%);}
+#section6 {background: radial-gradient(ellipse farthest-corner at center top, #b2ebf2 0%, #0091ea 100%);}
