@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">    
+    <title>test</title>
+
+    <link rel="shortcut icon" href="#">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            position: relative;
+            background-color: black;
+            width: 100vw;
+            height: 100vh;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        h1 { color: white; }
+        
+        .cursor_item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            border-radius: 50%;
+            margin: -50px 0 0 -50px; /* cursor의 가운데 지점에 위치시킨 것. */
+            transition: all 500ms cubic-bezier(0.800, 0.000, 0.245, 1.000);
+        }
+
+        button {
+            font-size: 40px;
+            font-weight: bold;
+            background: #ffffff;
+            color: red;
+            padding: 30px 80px;
+            margin: 50px;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.800, 0.000, 0.245, 1.000);
+        }
+
+        button:hover {
+            background: red;
+            color: #fff;
+            padding: 50px 100px;
+            font-size: 50px;
+        }
+
+    </style>
+    <script>
+
+        let cursor_item;
+        let h1; 
+
+        let x = 0,
+            y = 0;
+        // 마우스의 x,y값을 변수로 만들기. 
+        let mouseX = 0,
+            mouseY = 0;
+        let followingSpeed = 0.05; // 따라오는 스피드값이 높아질 수록 마우스의 원래 움직임과 같아진다.
+        
+
+        window.onload = function(){
+        // window.onload => 화면이 다 로드가 된 다음에 실행을 해라. (mousemove는 바로 작동을 하지만 h1에다가 값을 넣기 위해서 onload를 쓴 것.) 
+            h1 = document.getElementsByTagName("h1")[0];
+            cursor_item = document.getElementsByClassName("cursor_item")[0];
+            // 1. getElementsByClassName를 사용할 때는 클래스명 앞에 .을 빼야 한다. 
+            // 2. 배열로 넣어오기 떄문에 첫번째 요소인 [0]을 선택해 준다. 
+            // 3. document.querySelector('.cursor_item')
+            //    document.querySelectorAll('.cursor_item')
+            // 4. querySelector, querySelectorAll 둘다 사용할 수 있다.
+            // 5. jquery로 표현 하면 => $('.className') / $('.className').eq(0);
+
+            window.addEventListener("click", mouseFunc, false);
+
+            function mouseFunc(e){
+                x = e.clientX;
+                y = e.clientY;
+                h1.innerHTML =`x : ${x} y : ${y}`;
+                cursor_item.style.transform = `translate(${x}px, ${y}px)`;
+                // console.log(e.clientX, e.clientY);
+                // clientX => 화면의 x축의 값.
+                // clientY => 화면의 y축의 값.
+            };
+        };
+
+        
+    </script>
+
+</head>
+<body>
+    <h1>test</h1>
+    <div class="cursor_item"></div>
+    <button>start</button>
+</body>
+</html>
