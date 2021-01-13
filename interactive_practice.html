@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">    
+    <title>test</title>
+
+    <link rel="shortcut icon" href="#">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            position: relative;
+            background-color: black;
+            width: 100vw;
+            height: 100vh;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        h1 { color: white; }
+        
+        .model {
+            width: 200px;
+            position: absolute;
+            left: 50%;
+            transform: trnaslateX(-50%);
+        }
+
+        .back {
+            position: relative;
+            width: 100%;
+            z-index: -1;
+        }
+
+
+    </style>
+    <script>
+
+        let model;
+        let back;
+        let h1; 
+
+        let x = 0,
+            y = 0;
+        let mouseX = 0,
+            mouseY = 0;
+        let followingSpeed = 0.009; 
+        
+
+        window.onload = function(){
+            h1 = document.getElementsByTagName("h1")[0];
+            model = document.getElementsByClassName("model")[0];
+            back = document.getElementsByClassName("back")[0];
+            window.addEventListener("mousemove", mouseFunc, false);
+
+            function mouseFunc(e){
+                x = (e.clientX - window.innerWidth / 2); /* 화면 크기에서 반을 자른 값을 실제 마우스에서 빼주는 것  -> 화면 가운데가 0으로 기준 잡힘 */
+                y = (e.clientY - window.innerHeight / 2); /* 화면 높이에서 반을 자른 값을 실제 마우스에서 빼주는 것  -> 화면 가운데가 0으로 기준 잡힘 */
+            };
+
+            loop();
+        };
+
+        function loop(){
+            mouseX += (x - mouseX) * followingSpeed;
+            mouseY += (y - mouseY) * followingSpeed;
+            h1.innerHTML =`x : ${x} y : ${y}`;
+            // model.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+            // model.style.transform = `translate(${-mouseX}px, ${-mouseY}px)`;  => '-'를 넣어주면 반대로 움직인다.
+            model.style.transform = `translate(${-(mouseX / 6)}px, ${-(mouseY / 6)}px)`; // => 더 적은 움직임을 갖고 싶을때는 나눠주면 된다.  
+            back.style.transform = `translate(${(mouseX / 6)}px, ${(mouseY / 6)}px)`;
+            window.requestAnimationFrame(loop);
+        };
+
+        
+    </script>
+
+</head>
+<body>
+    <h1>test</h1>
+    <img src="/asset/img/model.png" class="model" alt="모델">
+    <img src="/asset/img/base.jpg" class="back" alt="배경">
+</body>
+</html>
