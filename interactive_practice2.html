@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">    
+    <title>test</title>
+
+    <link rel="shortcut icon" href="#">
+
+    <!--
+        레퍼런스 사이트 
+        https://www.nytimes.com/paidpost/allbirds/the-view-from-above.html 
+        오브젝트 앞뒤로 넣고 그 사이에 영상을 끼워 넣고 영상 역시도 마우스 움직임에 따라 움직이는 것처럼 보인게 만듬. (알파값(투명도)이 있는 영상.)
+    -->
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url(/asset/img/4-704acf85.png);
+            background-size: cover;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        img {
+            position: absolute;
+        }
+        
+        img:nth-child(1),
+        img:nth-child(2) {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        img:nth-child(3),
+        img:nth-child(4),
+        img:nth-child(5) { 
+            top: calc(50% - 450px);
+            left: calc(50% - 480px); 
+        }
+
+
+        .vod {
+            position: absolute;
+            top: calc(50% - 400px);
+            left: calc(50% - 580px);
+        }
+
+    </style>
+
+    <script>
+
+        let x = 0,
+            y = 0,
+            mouseX = 0,
+            mouseY = 0,
+            followingSpeed = 0.01;
+        let _imgArr,
+            _bird;
+
+        window.onload = function(){
+
+            _imgArr = document.getElementsByTagName("img");
+            // [0]을 지워주면 배열로 넘어온다. 
+            // alert(_imgArr.length);
+            _bird = document.getElementsByClassName("vod")[0];
+
+            window.addEventListener("mousemove", mouseFunc, false);
+
+            function mouseFunc(e){
+                x = ( e.clientX - window.innerWidth ) / 2;
+                y = ( e.clientY - window.innerHeight ) / 2; 
+            };
+            loop()
+        };
+
+        function loop(){
+            mouseX += ( x - mouseX ) * followingSpeed;
+            mouseY += ( y - mouseY ) * followingSpeed;
+            
+            _imgArr[2].style.transform = `translate( ${-(mouseX / 8)}px, ${-(mouseY) / 8}px )`
+            _imgArr[3].style.transform = `translate( ${-(mouseX / 7)}px, ${-(mouseY) / 7}px )`
+            _imgArr[4].style.transform = `translate( ${-(mouseX / 6)}px, ${-(mouseY) / 6}px )`
+
+            _bird.style.transform = `translate( ${-(mouseX / 4)}px, ${-(mouseY / 4)}px )`
+
+            window.requestAnimationFrame(loop);
+        };
+
+    </script>
+
+</head>
+<body>
+    <section>
+        <img src="/asset/img/background.png" alt="배경">
+        <img src="/asset/img/1-6afa0a2f.png" alt="나뭇가지1">
+        <img src="/asset/img/2-fb5c232c.png" alt="나뭇가지2">
+        <div class="vod">
+            <video autoplay="" playsinline="" loop="" src="/asset/img/bird.webm"></video>
+        </div>
+        <img src="/asset/img/front_object1.png" alt="오브젝트1">
+        <img src="/asset/img/front_object2.png" alt="오브젝트2">
+        
+    </section>
+</body>
+</html>

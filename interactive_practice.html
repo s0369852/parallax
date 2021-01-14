@@ -63,6 +63,12 @@
             function mouseFunc(e){
                 x = (e.clientX - window.innerWidth / 2); /* 화면 크기에서 반을 자른 값을 실제 마우스에서 빼주는 것  -> 화면 가운데가 0으로 기준 잡힘 */
                 y = (e.clientY - window.innerHeight / 2); /* 화면 높이에서 반을 자른 값을 실제 마우스에서 빼주는 것  -> 화면 가운데가 0으로 기준 잡힘 */
+                /*
+                    브라우저 내에서 마우스 위치값을 브라우저 왼쪽 상단이 아닌,
+                    브라우저 가운데가 중심이 되게 바꿔주는 게 핵심이다. 
+                    예를 들어, width가 900일 경우 마우스 위치값이 0부터 999까지 찍힐텐데,
+                    거기서 브라우저 width / 2를 해서 빼주는 것.
+                */
             };
 
             loop();
@@ -76,6 +82,10 @@
             // model.style.transform = `translate(${-mouseX}px, ${-mouseY}px)`;  => '-'를 넣어주면 반대로 움직인다.
             model.style.transform = `translate(${-(mouseX / 6)}px, ${-(mouseY / 6)}px)`; // => 더 적은 움직임을 갖고 싶을때는 나눠주면 된다.  
             back.style.transform = `translate(${(mouseX / 6)}px, ${(mouseY / 6)}px)`;
+            /* 
+                translate()외에도 scale(), rotate() 등 다양하게 할 수 있다.
+                transform ="rotate(" + 변하는 값 + "deg)"
+            */
             window.requestAnimationFrame(loop);
         };
 
