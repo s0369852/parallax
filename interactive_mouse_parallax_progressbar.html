@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스크롤</title>
+
+    <link rel="shortcut icon" href="#">
+
+    <style>
+        body {
+            height: 10000px;
+            background-image: linear-gradient(60deg, #ed6ea0 0%, #ec8c69 100%);
+        }
+
+        h1 {
+            color: white;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 10vh;
+        }
+
+        .progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            width: 100%;
+            height: 5px;
+            background-color: black;
+        }
+
+        .bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 11;
+            width: 100%;
+            height: 5px;
+            background-color: #1dd8cf;
+            width: 0%;
+        }
+
+    </style>
+
+    <script>
+        let scrollTop = 0;
+        let bar;
+
+        window.onload = () => {
+            bar = document.getElementsByClassName('bar')[0];
+        };
+
+        window.addEventListener('scroll', (e) => {
+            scrollTop = document.documentElement.scrollTop;
+
+            let per = parseInt(scrollTop / (document.body.scrollHeight - window.outerHeight) * 100);
+            // 일단 percent를 구한다. -> 현재 위치를 전체 화면 길이에서 지금 scrollTop값이 나온 것을 %로 환산.
+            /* 
+                (document.body.scrollHeight - window.outerHeight) => progressbar가 끝까지 안차는 것을 볼 수 있는데, 
+                이유는 지금 실제 보이는 화면 만큼의 값이 빠져있기 때문이다. 
+                그래서 전체 스크롤 높이 값에 실제 보이고 있는 화면의 높이값을 빼줘야 한다. 
+
+                가로 퍼센트 값 = 스크롤탑 값 / (문서 전체 길이 - 현재 윈도우 창 길이) * 100;
+                per = (scrollTop / (document.documentElement.scrollTop - window.outerHeight) * 100)
+            */
+            console.log(per);
+
+            bar.style.width = per +'%'
+
+        }, false);
+
+    </script>
+
+</head>
+<body>
+    <h1>Scroll</h1>
+    <div class="progress">
+        <span class="bar"></span>
+    </div>
+</body>
+</html>

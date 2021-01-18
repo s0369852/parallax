@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스크롤</title>
+
+    <link rel="shortcut icon" href="#">
+
+    <style>
+        body {
+            height: 10000px;
+            background-image: linear-gradient(160deg, #9890e3 0%, #b1f4cf 100%);
+        }
+
+        h1 {
+            color: white;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 10vh;
+        }
+    </style>
+
+    <script>
+        let scrollTop = 0;
+
+        window.addEventListener('scroll', (e) => {
+            scrollTop = document.documentElement.scrollTop;
+            console.log(`scrollTop : ${scrollTop}`);
+        }, false);
+
+        // 1. 스크롤이 될 영역이 필요 => body에 height = 10000
+        // 2. window에 scroll 이벤트를 걸어서 scrollTop이라는 변수에 document의 scrollTop값을 저장해준다.
+        // 3. 스크롤 값 받아오기 => scrollTop = document.documentElement.scrollTop
+
+    </script>
+
+</head>
+<body>
+    <h1>Scroll</h1>
+</body>
+</html>
