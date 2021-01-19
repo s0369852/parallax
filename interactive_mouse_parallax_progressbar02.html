@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스크롤</title>
+
+    <link rel="shortcut icon" href="#">
+
+    <style>
+        body {
+            height: 10000px;
+            background-image: linear-gradient(60deg, #ed6ea0 0%, #ec8c69 100%);
+        }
+
+        h1 {
+            color: white;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 10vh;
+        }
+
+        .progress {
+            position: fixed;
+            top: 40%;
+            left: 20px;
+            z-index: 10;
+            width: 4px;
+            height: 140px;
+            background-color: black;
+        }
+
+        .bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 11;
+            width: 4px;
+            height: 140px;
+            background-color: #1dd8cf;
+        }
+
+    </style>
+
+    <script>
+        let scrollTop = 0;
+        let bar;
+
+        window.onload = () => {
+            bar = document.getElementsByClassName('bar')[0];
+        };
+
+        window.addEventListener('scroll', (e) => {
+            scrollTop = document.documentElement.scrollTop;
+
+            let per = parseInt(scrollTop / (document.body.scrollHeight - window.outerHeight) * 100);
+            /* 
+                세로 퍼센트값 = 스크롤탑 / (문서 높이 - 화면 높이) * 100;
+                퍼센트로 환산을 해서 입력을 해주는 것이라
+                스크롤바의 길이는 아무래도 상관 없다. 
+            */
+            console.log(per);
+
+            bar.style.height = per +'%'
+
+        }, false);
+
+    </script>
+
+</head>
+<body>
+    <h1>Scroll</h1>
+    <div class="progress">
+        <span class="bar"></span>
+    </div>
+</body>
+</html>
